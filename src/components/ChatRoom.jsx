@@ -28,6 +28,8 @@ function ChatRoom() {
     });
   }, []);
 
+  console.log("In Chatroom:", room);
+
   return (
     <div className="main-container">
       <RoomSelector room={room} setRoom={setRoom} />
