@@ -12,13 +12,12 @@ function SendMessage() {
 
     let { photoURL, uid } = auth.currentUser;
 
-    await addDoc(colRef, {
+    let temp = await addDoc(colRef, {
       text: message,
       photoURL,
       uid,
       createdAt: serverTimestamp(),
     });
-
     setMessage("");
   }
 

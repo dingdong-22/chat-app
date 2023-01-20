@@ -10,9 +10,11 @@ import {
 import { auth, db } from "../firebase";
 import SignOut from "./SignOut";
 import SendMessage from "./SendMessage";
+import RoomSelector from "./RoomSelector";
 
 function ChatRoom() {
   let [messages, setMessages] = useState([]);
+  let [room, setRoom] = useState("BEZDE9Bg87EqeTpSwrbW");
 
   useEffect(() => {
     let messagesQuery = query(
@@ -27,14 +29,17 @@ function ChatRoom() {
   }, []);
 
   return (
-    <div className="chat-room">
-      <SignOut />
-      <div className="message-container">
-        {messages.map(({ id, text, photoURL, uid }) => (
-          <ChatMessage key={id} text={text} photoURL={photoURL} uid={uid} />
-        ))}
+    <div className="main-container">
+      <RoomSelector room={room} setRoom={setRoom} />
+      <div className="chat-room">
+        <SignOut />
+        <div className="message-container">
+          {messages.map(({ id, text, photoURL, uid }) => (
+            <ChatMessage key={id} text={text} photoURL={photoURL} uid={uid} />
+          ))}
+        </div>
+        <SendMessage />
       </div>
-      <SendMessage />
     </div>
   );
 }

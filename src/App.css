@@ -2,13 +2,13 @@ body {
   display: grid;
   place-content: center;
 
-  --clr-bg: #2d2d2d;
+  --clr-bg: #6d6565;
   --clr-msg-bg: #1b6cdd;
   --clr-msg-bg-sent: #2da545;
 }
 
 .App {
-  width: 400px;
+  width: 600px;
   height: 600px;
   border: 1px black solid;
   background-color: var(--clr-bg);
@@ -70,7 +70,6 @@ body {
   align-self: flex-end;
   flex-direction: row-reverse;
   background-color: var(--clr-msg-bg-sent);
-
 }
 
 .recieved {
@@ -91,4 +90,9 @@ body {
 
 .submit-message-button {
   width: 50px;
+}
+
+.main-container {
+  display: grid;
+  grid-template-columns: 200px 400px;
 }
