@@ -24,7 +24,9 @@ function ChatRoom() {
     );
 
     onSnapshot(messagesQuery, (querySnapshot) => {
-      setMessages(querySnapshot.docs.map((doc) => doc.data()));
+      setMessages(
+        querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+      );
     });
   }, []);
 
@@ -36,9 +38,11 @@ function ChatRoom() {
       <div className="chat-room">
         <SignOut />
         <div className="message-container">
-          {messages.map(({ id, text, photoURL, uid }) => (
-            <ChatMessage key={id} text={text} photoURL={photoURL} uid={uid} />
-          ))}
+          {messages.map(({ id, text, photoURL, uid }) => {
+            return (
+              <ChatMessage key={id} text={text} photoURL={photoURL} uid={uid} />
+            );
+          })}
         </div>
         <SendMessage />
       </div>
@@ -46,14 +50,12 @@ function ChatRoom() {
   );
 }
 
-function ChatMessage({ key, text, photoURL, uid }) {
+function ChatMessage({ text, photoURL, uid }) {
   let messageClass = uid === auth.currentUser.uid ? "sent" : "recieved";
   return (
-    <div key={key} className={`message ${messageClass}`}>
-      <img className="message-photo" key={key} src={photoURL} alt=""></img>
-      <p className="text" key={key}>
-        {text}
-      </p>
+    <div className={`message ${messageClass}`}>
+      <img className="message-photo" src={photoURL} alt=""></img>
+      <p className="text">{text}</p>
     </div>
   );
 }
