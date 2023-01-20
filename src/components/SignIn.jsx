@@ -1,13 +1,11 @@
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
-import "firebase/compat/firestore";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 import { auth } from "../firebase";
 
 function SignIn() {
   function signInWithGoogle() {
-    let provider = new firebase.auth.GoogleAuthProvider();
-    return auth.signInWithPopup(provider);
+    let provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider);
   }
 
   return (

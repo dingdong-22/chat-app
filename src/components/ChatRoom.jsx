@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
-
-import "firebase/compat/auth";
-import "firebase/compat/firestore";
+import {
+  collection,
+  onSnapshot,
+  query,
+  limit,
+  orderBy,
+} from "firebase/firestore";
 
 import { auth, db } from "../firebase";
 import SignOut from "./SignOut";
@@ -11,14 +15,17 @@ function ChatRoom() {
   let [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    db.collection("messages")
-      .orderBy("createdAt")
-      .limit(50)
-      .onSnapshot((snapshot) =>
-        setMessages(snapshot.docs.map((doc) => doc.data()))
-      );
+    let messagesQuery = query(
+      collection(db, "messages"),
+      orderBy("createdAt"),
+      limit(25)
+    );
+
+    onSnapshot(messagesQuery, (querySnapshot) => {
+      setMessages(querySnapshot.docs.map((doc) => doc.data()));
+    });
   }, []);
-  
+
   return (
     <div className="chat-room">
       <SignOut />

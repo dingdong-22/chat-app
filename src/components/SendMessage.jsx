@@ -1,8 +1,5 @@
 import { useState } from "react";
-
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
-import "firebase/compat/firestore";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 import { auth, db } from "../firebase";
 
@@ -11,14 +8,17 @@ function SendMessage() {
 
   async function sendMessage(e) {
     e.preventDefault();
+    let colRef = collection(db, "messages");
+
     let { photoURL, uid } = auth.currentUser;
 
-    await db.collection("messages").add({
+    await addDoc(colRef, {
       text: message,
       photoURL,
       uid,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      createdAt: serverTimestamp(),
     });
+
     setMessage("");
   }
 
