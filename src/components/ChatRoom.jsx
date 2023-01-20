@@ -18,7 +18,8 @@ function ChatRoom() {
 
   useEffect(() => {
     let messagesQuery = query(
-      collection(db, "messages"),
+      // collection(db, "messages"),
+      collection(db, `rooms/${room}/messages`),
       orderBy("createdAt"),
       limit(25)
     );
@@ -28,7 +29,7 @@ function ChatRoom() {
         querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
       );
     });
-  }, []);
+  }, [room]);
 
   console.log("In Chatroom:", room);
 
@@ -44,7 +45,7 @@ function ChatRoom() {
             );
           })}
         </div>
-        <SendMessage />
+        <SendMessage room={room} />
       </div>
     </div>
   );
