@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
 import SignOut from "./SignOut";
 import SendMessage from "./SendMessage";
 
@@ -18,19 +18,13 @@ function ChatRoom() {
         setMessages(snapshot.docs.map((doc) => doc.data()))
       );
   }, []);
-
+  
   return (
-    <div>
+    <div className="chat-room">
       <SignOut />
       <div className="message-container">
         {messages.map(({ id, text, photoURL, uid }) => (
-          <ChatMessage
-            key={id}
-            uniq={id}
-            text={text}
-            photoURL={photoURL}
-            uid={uid}
-          />
+          <ChatMessage key={id} text={text} photoURL={photoURL} uid={uid} />
         ))}
       </div>
       <SendMessage />
@@ -39,10 +33,13 @@ function ChatRoom() {
 }
 
 function ChatMessage({ key, text, photoURL, uid }) {
+  let messageClass = uid === auth.currentUser.uid ? "sent" : "recieved";
   return (
-    <div key={key} className={uid}>
-      <img src={photoURL} alt=""></img>
-      <p key={key}>{text}</p>
+    <div key={key} className={`message ${messageClass}`}>
+      <img className="message-photo" key={key} src={photoURL} alt=""></img>
+      <p className="text" key={key}>
+        {text}
+      </p>
     </div>
   );
 }

@@ -23,14 +23,17 @@ function SendMessage() {
   }
 
   return (
-    <div>
+    <div className="send-message-container">
       <form onSubmit={sendMessage}>
         <input
+          className="message-input"
           type="text"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <button type="submit">Send</button>
+        <button className="submit-message-button" type="submit">
+          Send
+        </button>
       </form>
     </div>
   );

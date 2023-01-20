@@ -11,8 +11,10 @@ function SignIn() {
   }
 
   return (
-    <div>
-      <button onClick={() => signInWithGoogle()}>Sign in</button>
+    <div className="sign-in-container">
+      <button className="sign-in" onClick={() => signInWithGoogle()}>
+        Sign in
+      </button>
     </div>
   );
 }
