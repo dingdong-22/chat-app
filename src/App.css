@@ -8,7 +8,7 @@ body {
 }
 
 .App {
-  width: 800px;
+  width: 1200px;
   height: 600px;
   border: 1px black solid;
   background-color: var(--clr-bg);
@@ -16,7 +16,7 @@ body {
 
 .main-container {
   display: grid;
-  grid-template-columns: 200px 400px 200px;
+  grid-template-columns: 400px 400px 400px;
 }
 
 .chat-room {
@@ -102,4 +102,16 @@ body {
 
 .submit-message-button {
   width: 50px;
+}
+
+.user-list-container {
+  display: grid;
+  grid-template-columns: 400px;
+  grid-template-rows: 30px 540px 30px;
+}
+
+.room-selector-container {
+  display: grid;
+  grid-template-columns: 400px;
+  grid-template-rows: 30px 540px 30px;
 }

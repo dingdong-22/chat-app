@@ -31,10 +31,14 @@ function RoomSelector(props) {
   function changeRoom(value) {
     props.setRoom(value);
   }
-
+  //TODO Add room function
   return (
-    <div>
-      {roomList}
+    <div className="room-selector-container">
+      <div>Rooms</div>
+      <div>{roomList}</div>
+      <div>
+        <button>Add room</button>
+      </div>
     </div>
   );
 }
