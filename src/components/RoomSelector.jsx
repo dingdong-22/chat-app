@@ -34,8 +34,6 @@ function RoomSelector(props) {
 
   return (
     <div>
-      {props.room}
-      <br />
       {roomList}
     </div>
   );

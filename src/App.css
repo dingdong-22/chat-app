@@ -8,10 +8,15 @@ body {
 }
 
 .App {
-  width: 600px;
+  width: 800px;
   height: 600px;
   border: 1px black solid;
   background-color: var(--clr-bg);
+}
+
+.main-container {
+  display: grid;
+  grid-template-columns: 200px 400px 200px;
 }
 
 .chat-room {
@@ -24,8 +29,15 @@ body {
 
 .sign-out-container {
   display: flex;
-  flex-direction: row-reverse;
+  justify-content: space-between;
   border: 1px black solid;
+}
+
+.sign-out {
+}
+
+.room-id {
+  margin: 0;
 }
 
 .send-message-container {
@@ -90,9 +102,4 @@ body {
 
 .submit-message-button {
   width: 50px;
-}
-
-.main-container {
-  display: grid;
-  grid-template-columns: 200px 400px;
 }

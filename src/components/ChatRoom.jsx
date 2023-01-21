@@ -11,6 +11,7 @@ import { auth, db } from "../firebase";
 import SignOut from "./SignOut";
 import SendMessage from "./SendMessage";
 import RoomSelector from "./RoomSelector";
+import UserList from "./UserList";
 
 function ChatRoom() {
   let [messages, setMessages] = useState([]);
@@ -37,7 +38,7 @@ function ChatRoom() {
     <div className="main-container">
       <RoomSelector room={room} setRoom={setRoom} />
       <div className="chat-room">
-        <SignOut />
+        <SignOut room={room}/>
         <div className="message-container">
           {messages.map(({ id, text, photoURL, uid }) => {
             return (
@@ -47,6 +48,7 @@ function ChatRoom() {
         </div>
         <SendMessage room={room} />
       </div>
+      <UserList room={room} />
     </div>
   );
 }
