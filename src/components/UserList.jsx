@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { db, auth } from "../firebase";
 
-import { doc, getDoc } from "firebase/firestore";
+import { arrayUnion, doc, getDoc, updateDoc } from "firebase/firestore";
 
 function UserList(props) {
   let [users, setUser] = useState([]);
@@ -13,17 +13,22 @@ function UserList(props) {
       setUser(d.data().users);
     });
   }
+
   useEffect(() => {
     getUsers();
-  }, [props.room]);
+  }, [props.room, users]);
 
-  //TODO
   async function addUser(e) {
     e.preventDefault();
     console.log("Adding", userInput);
+    let docRef = doc(db, `rooms/${props.room}`);
+    let temp = await updateDoc(docRef, {
+      users: arrayUnion(userInput),
+    });
+
     setUserInput("");
   }
-
+  //TODO if room private then able to add
   return (
     <div className="user-list-container">
       <div>User List</div>

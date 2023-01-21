@@ -8,8 +8,8 @@ function SignIn() {
 
   async function defaultRooms() {
     for (let room of publicRooms) {
-      let colRef = doc(db, "rooms", room);
-      await updateDoc(colRef, {
+      let docRef = doc(db, "rooms", room);
+      await updateDoc(docRef, {
         users: arrayUnion(auth.currentUser.uid),
       });
     }

@@ -6,6 +6,7 @@ import {
   where,
   addDoc,
   serverTimestamp,
+  orderBy,
 } from "firebase/firestore";
 
 import { auth, db } from "../firebase";
@@ -15,7 +16,8 @@ function RoomSelector(props) {
   useEffect(() => {
     let roomsQuery = query(
       collection(db, "rooms"),
-      where("users", "array-contains", auth.currentUser.uid)
+      where("users", "array-contains", auth.currentUser.uid),
+      orderBy("public", "desc")
     );
 
     onSnapshot(roomsQuery, (querySnapshot) => {
