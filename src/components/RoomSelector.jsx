@@ -28,13 +28,16 @@ function RoomSelector(props) {
       setRoomList(
         querySnapshot.docs.map((doc) => {
           return (
-            <button
-              key={doc.id}
-              value={doc.id}
-              onClick={(e) => changeRoom(e.target.value)}
-            >
-              {doc.id}
-            </button>
+            <div className="room-button-container">
+              <button
+                key={doc.id}
+                className={`room-button`}
+                value={doc.id}
+                onClick={(e) => changeRoom(e.target.value)}
+              >
+                <p>{doc.id}</p>
+              </button>
+            </div>
           );
         })
       );
@@ -45,16 +48,16 @@ function RoomSelector(props) {
     let docRef = doc(db, `rooms/${value}`);
     let temp = await getDoc(docRef).then((d) => {
       if (d.data().public) {
-        props.setIsPublic(true)
+        props.setIsPublic(true);
       } else {
-        props.setIsPublic(false)
+        props.setIsPublic(false);
       }
     });
   }
 
   function changeRoom(value) {
     props.setRoom(value);
-    checkPublic(value)
+    checkPublic(value);
   }
 
   async function addRoom() {
@@ -78,7 +81,7 @@ function RoomSelector(props) {
   return (
     <div className="room-selector-container">
       <div>Rooms</div>
-      <div>{roomList}</div>
+      <div className="room-container">{roomList}</div>
       <div>
         <button onClick={() => addRoom()}>Add room</button>
       </div>
