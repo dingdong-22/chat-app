@@ -28,7 +28,7 @@ function UserList(props) {
 
     setUserInput("");
   }
-  //TODO if room private then able to add
+
   return (
     <div className="user-list-container">
       <div>User List</div>
@@ -38,14 +38,16 @@ function UserList(props) {
         })}
       </div>
       <div>
-        <form onSubmit={(e) => addUser(e)}>
-          <input
-            type="text"
-            value={userInput}
-            onChange={(e) => setUserInput(e.target.value)}
-          />
-          <button type="submit">Add user</button>
-        </form>
+        {props.isPublic ? null : (
+          <form onSubmit={(e) => addUser(e)}>
+            <input
+              type="text"
+              value={userInput}
+              onChange={(e) => setUserInput(e.target.value)}
+            />
+            <button type="submit">Add user</button>
+          </form>
+        )}
       </div>
     </div>
   );

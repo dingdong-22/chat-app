@@ -4,7 +4,7 @@ import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 import { auth, db } from "../firebase";
 
 function SignIn() {
-  let publicRooms = ["BEZDE9Bg87EqeTpSwrbW", "XSAXZSSZFQtXG7C3eWjJ"];
+  let publicRooms = ["BEZDE9Bg87EqeTpSwrbW", "UUjqwU3MRxq0jE5AhnsY"];
 
   async function defaultRooms() {
     for (let room of publicRooms) {

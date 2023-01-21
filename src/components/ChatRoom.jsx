@@ -16,10 +16,10 @@ import UserList from "./UserList";
 function ChatRoom() {
   let [messages, setMessages] = useState([]);
   let [room, setRoom] = useState("BEZDE9Bg87EqeTpSwrbW");
+  let [isPublic, setIsPublic] = useState(true);
 
   useEffect(() => {
     let messagesQuery = query(
-      // collection(db, "messages"),
       collection(db, `rooms/${room}/messages`),
       orderBy("createdAt"),
       limit(25)
@@ -36,7 +36,7 @@ function ChatRoom() {
 
   return (
     <div className="main-container">
-      <RoomSelector room={room} setRoom={setRoom} />
+      <RoomSelector room={room} setRoom={setRoom} setIsPublic={setIsPublic} />
       <div className="chat-room">
         <SignOut room={room} />
         <div className="message-container">
@@ -48,7 +48,7 @@ function ChatRoom() {
         </div>
         <SendMessage room={room} />
       </div>
-      <UserList room={room} />
+      <UserList room={room} isPublic={isPublic} />
     </div>
   );
 }

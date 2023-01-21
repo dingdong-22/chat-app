@@ -7,17 +7,21 @@ import {
   addDoc,
   serverTimestamp,
   orderBy,
+  doc,
+  getDoc,
 } from "firebase/firestore";
 
 import { auth, db } from "../firebase";
 
 function RoomSelector(props) {
   let [roomList, setRoomList] = useState([]);
+
   useEffect(() => {
     let roomsQuery = query(
       collection(db, "rooms"),
       where("users", "array-contains", auth.currentUser.uid),
-      orderBy("public", "desc")
+      orderBy("public", "desc"),
+      orderBy("createdAt")
     );
 
     onSnapshot(roomsQuery, (querySnapshot) => {
@@ -37,16 +41,29 @@ function RoomSelector(props) {
     });
   }, []);
 
+  async function checkPublic(value) {
+    let docRef = doc(db, `rooms/${value}`);
+    let temp = await getDoc(docRef).then((d) => {
+      if (d.data().public) {
+        props.setIsPublic(true)
+      } else {
+        props.setIsPublic(false)
+      }
+    });
+  }
+
   function changeRoom(value) {
     props.setRoom(value);
+    checkPublic(value)
   }
-  
+
   async function addRoom() {
     let colRef = collection(db, "rooms");
-    console.log("Adding room")
+    console.log("Adding room");
     let newRoom = await addDoc(colRef, {
       users: [auth.currentUser.uid],
       public: false,
+      createdAt: serverTimestamp(),
     });
 
     let addMessage = await addDoc(
