@@ -1,5 +1,12 @@
 import { useState, useEffect } from "react";
-import { collection, onSnapshot, query, where } from "firebase/firestore";
+import {
+  collection,
+  onSnapshot,
+  query,
+  where,
+  addDoc,
+  serverTimestamp,
+} from "firebase/firestore";
 
 import { auth, db } from "../firebase";
 
@@ -31,13 +38,29 @@ function RoomSelector(props) {
   function changeRoom(value) {
     props.setRoom(value);
   }
-  //TODO Add room function
+
+  async function addRoom() {
+    let colRef = collection(db, "rooms");
+
+    let newRoom = await addDoc(colRef, {
+      users: [auth.currentUser.uid],
+    });
+
+    let addMessage = await addDoc(
+      collection(db, "rooms", newRoom.id, "messages"),
+      {
+        text: "Created",
+        createdAt: serverTimestamp(),
+      }
+    );
+  }
+
   return (
     <div className="room-selector-container">
       <div>Rooms</div>
       <div>{roomList}</div>
       <div>
-        <button>Add room</button>
+        <button onClick={() => addRoom()}>Add room</button>
       </div>
     </div>
   );

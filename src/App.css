@@ -84,9 +84,6 @@ body {
   background-color: var(--clr-msg-bg-sent);
 }
 
-.recieved {
-}
-
 .form {
   width: 100%;
   height: 100%;

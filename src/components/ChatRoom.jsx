@@ -38,7 +38,7 @@ function ChatRoom() {
     <div className="main-container">
       <RoomSelector room={room} setRoom={setRoom} />
       <div className="chat-room">
-        <SignOut room={room}/>
+        <SignOut room={room} />
         <div className="message-container">
           {messages.map(({ id, text, photoURL, uid }) => {
             return (
@@ -54,7 +54,7 @@ function ChatRoom() {
 }
 
 function ChatMessage({ text, photoURL, uid }) {
-  let messageClass = uid === auth.currentUser.uid ? "sent" : "recieved";
+  let messageClass = uid === auth.currentUser.uid ? "sent" : "received";
   return (
     <div className={`message ${messageClass}`}>
       <img className="message-photo" src={photoURL} alt=""></img>
