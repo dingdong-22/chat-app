@@ -40,12 +40,13 @@ function RoomSelector(props) {
   function changeRoom(value) {
     props.setRoom(value);
   }
-
+  
   async function addRoom() {
     let colRef = collection(db, "rooms");
-
+    console.log("Adding room")
     let newRoom = await addDoc(colRef, {
       users: [auth.currentUser.uid],
+      public: false,
     });
 
     let addMessage = await addDoc(
