@@ -80,10 +80,12 @@ function RoomSelector(props) {
 
   return (
     <div className="room-selector-container">
-      <div>Rooms</div>
+      <div className="rooms-title">Rooms</div>
       <div className="room-container">{roomList}</div>
       <div>
-        <button onClick={() => addRoom()}>Add room</button>
+        <button className="add-room-button" onClick={() => addRoom()}>
+          Add room
+        </button>
       </div>
     </div>
   );
