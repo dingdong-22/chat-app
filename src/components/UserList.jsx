@@ -15,8 +15,9 @@ function UserList(props) {
   }
 
   useEffect(() => {
+    console.log("Getting users")
     getUsers();
-  }, [props.room, users]);
+  }, [props.room]);
 
   async function addUser(e) {
     e.preventDefault();
@@ -31,7 +32,7 @@ function UserList(props) {
 
   return (
     <div className="user-list-container">
-      <div>User List</div>
+      <div className="user-list-title">User List</div>
       <div>
         {users.map((x) => {
           return <div key={x}>{x}</div>;

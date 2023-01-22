@@ -24,7 +24,8 @@ function ChatRoom() {
       orderBy("createdAt"),
       limit(25)
     );
-
+      
+    console.log("Chatroom Snap")
     onSnapshot(messagesQuery, (querySnapshot) => {
       setMessages(
         querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))

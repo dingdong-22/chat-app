@@ -4,7 +4,7 @@ import { auth } from "../firebase";
 
 function SignOut(props) {
   return (
-    <div className="sign-out-container">
+    <div className="chat-top-row-container">
       <p className="room-id">{props.room}</p>
       <button className="sign-out" onClick={() => signOut(auth)}>
         Sign Out

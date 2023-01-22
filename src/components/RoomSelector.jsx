@@ -25,6 +25,7 @@ function RoomSelector(props) {
     );
 
     onSnapshot(roomsQuery, (querySnapshot) => {
+      console.log("Room Selector Snap")
       setRoomList(
         querySnapshot.docs.map((doc) => {
           return (
