@@ -191,6 +191,7 @@ body {
 .user-button-container {
   height: 50px;
   width: calc(var(--room-width) - 50px);
+  background-color: var(--clr-room-button);
 }
 
 .user-button {

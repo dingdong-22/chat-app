@@ -9,6 +9,9 @@ import {
   orderBy,
   doc,
   getDoc,
+  exists,
+  getDocs,
+  data,
 } from "firebase/firestore";
 
 import { auth, db } from "../firebase";
@@ -17,6 +20,8 @@ function RoomSelector(props) {
   let [roomList, setRoomList] = useState([]);
 
   useEffect(() => {
+    console.log("Getting rooms");
+    
     let roomsQuery = query(
       collection(db, "rooms"),
       where("users", "array-contains", auth.currentUser.uid),
@@ -25,7 +30,6 @@ function RoomSelector(props) {
     );
 
     onSnapshot(roomsQuery, (querySnapshot) => {
-      console.log("Room Selector Snap");
       setRoomList(
         querySnapshot.docs.map((doc) => {
           return (
@@ -36,13 +40,14 @@ function RoomSelector(props) {
                 value={doc.id}
                 onClick={(e) => changeRoom(e.target.value)}
               >
-                <p>{doc.id}</p>
+                {doc.id}
               </button>
             </div>
           );
         })
       );
     });
+
   }, []);
 
   async function checkPublic(value) {

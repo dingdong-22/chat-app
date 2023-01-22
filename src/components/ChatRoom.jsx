@@ -33,7 +33,7 @@ function ChatRoom() {
     });
   }, [room]);
 
-  console.log("In Chatroom:", room);
+  // console.log("In Chatroom:", room);
 
   return (
     <div className="main-container">
