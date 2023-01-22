@@ -19,6 +19,8 @@ function SendMessage(props) {
       createdAt: serverTimestamp(),
     });
     setMessage("");
+    let anchor = document.getElementById("anchor");
+    anchor.scrollIntoView({ behavior: "smooth" });
   }
 
   return (

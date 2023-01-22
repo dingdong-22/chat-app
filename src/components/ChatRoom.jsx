@@ -64,6 +64,7 @@ function ChatRoom() {
               <ChatMessage key={id} text={text} photoURL={photoURL} uid={uid} />
             );
           })}
+          <div id="anchor"></div>
         </div>
         <SendMessage room={room} />
       </div>
