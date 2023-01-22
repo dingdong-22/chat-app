@@ -1,35 +1,39 @@
 body {
   display: grid;
   place-content: center;
-
+  background-color: hsl(0, 0%, 87%);
   --room-width: 300px;
   --chat-width: 600px;
   --users-width: 300px;
-  --outer-row-height: 30px;
+  --outer-row-height: 40px;
 
   /* rooms variables */
-  --clr-room-selector-bg: hsl(0, 0%, 75%);
-  --clr-room-button: hsl(60, 2%, 92%);
-  --clr-add-room-button: hsl(60, 2%, 92%);
-  --clr-rooms-title: hsl(192, 93%, 58%);
+  --clr-rooms-title: hsl(188, 98%, 40%);
+  --clr-room-selector-bg: hsl(226, 83%, 53%);
+  --clr-add-room-button: hsl(188, 98%, 40%);
+  --clr-room-button: hsl(0, 0%, 95%);
+  --clr-room-button-hover: hsl(215, 80%, 56%);
+  --clr-current-room-button: hsl(215, 80%, 56%);
 
   /* chat variables */
-  --clr-bg: hsl(0, 1%, 37%);
-  --clr-msg-bg: hsl(210, 80%, 50%);
-  --clr-msg-bg-sent: hsl(132, 50%, 50%);
-  --clr-sign-out-button: hsl(60, 2%, 92%);
-  --clr-chat-top-row-container: hsl(0, 97%, 69%);
+  --clr-bg: hsl(0, 0%, 95%);
+  --clr-chat-top-row-container: hsl(188, 72%, 61%);
+  --clr-sign-out-button: hsl(188, 98%, 40%);
+  --clr-msg-bg: hsl(211, 60%, 66%);
+  --clr-msg-bg-sent: hsl(188, 72%, 61%);
 
   /* users variables */
-  --clr-user-list-title: hsl(101, 85%, 71%);
-  --clr-user-list-bg: hsl(0, 0%, 75%);
+  --clr-user-list-title: hsl(188, 98%, 40%);
+  --clr-user-list-bg: hsl(0, 0%, 95%);
 }
 
 .App {
   width: calc(var(--room-width) + var(--chat-width) + var(--users-width));
   height: 600px;
-  border: 1px black solid;
+  /* border: 1px black solid; */
   background-color: var(--clr-bg);
+  border-radius: 1%;
+  overflow: hidden;
 }
 
 .main-container {
@@ -39,18 +43,17 @@ body {
 
 /* Rooms */
 
-.rooms-title {
-  text-align: center;
-  border: 1px black solid;
-  font-weight: 550;
-  background-color: var(--clr-rooms-title);
-}
-
 .room-selector-container {
   display: grid;
   grid-template-columns: var(--room-width);
-  grid-template-rows: 30px 540px 30px;
+  grid-template-rows: 30px 530px 40px;
   background-color: var(--clr-room-selector-bg);
+}
+
+.rooms-title {
+  text-align: center;
+  font-weight: 550;
+  background-color: var(--clr-rooms-title);
 }
 
 .room-container {
@@ -61,25 +64,31 @@ body {
 
 .room-button-container {
   height: 50px;
-  width: calc(var(--room-width) - 50px);
-  margin: 5px 0px 5px 0px;
+  width: 100%;
 }
 
 .room-button {
   height: 50px;
-  width: calc(var(--room-width) - 50px);
-  border-radius: 10%;
+  width: 100%;
+  overflow: auto;
+  border: none;
   background-color: var(--clr-room-button);
 }
 
+.room-button:hover {
+  background-color: var(--clr-room-button-hover);
+}
+
 .room-button.current {
-  background-color: red;
+  background-color: var(--clr-current-room-button);
 }
 
 .add-room-button {
   width: var(--room-width);
   height: var(--outer-row-height);
   background-color: var(--clr-add-room-button);
+  border: 0;
+  padding: 0;
 }
 
 /* chat */
@@ -89,13 +98,12 @@ body {
   height: 600px;
   display: grid;
   grid-template-columns: var(--chat-width);
-  grid-template-rows: 30px 540px 30px;
+  grid-template-rows: 30px 530px 40px;
 }
 
 .chat-top-row-container {
   display: flex;
   justify-content: space-between;
-  border: 1px black solid;
   background-color: var(--clr-chat-top-row-container);
   font-weight: 550;
 }
@@ -112,8 +120,8 @@ body {
 }
 
 .message-photo {
-  width: 20px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   float: left;
   margin: 5px;
@@ -124,8 +132,7 @@ body {
   align-items: center;
   background-color: var(--clr-msg-bg);
   margin: 4px;
-  border-radius: 20%;
-  max-width: 277px;
+  max-width: 400px;
   height: fit-content;
   word-break: break-all;
   white-space: normal;
@@ -163,7 +170,7 @@ form {
 }
 
 .message-input {
-  width: calc(var(--chat-width)*0.85);
+  width: calc(var(--chat-width) * 0.85);
   height: var(--outer-row-height);
   font-size: 1.2rem;
   outline: none;
@@ -172,7 +179,7 @@ form {
 }
 
 .submit-message-button {
-  width: calc(var(--chat-width)*0.15);
+  width: calc(var(--chat-width) * 0.15);
   height: calc(var(--outer-row-height));
   padding: 0;
   border: 0;
@@ -202,13 +209,12 @@ form {
 
 .user-button-container {
   height: 50px;
-  width: calc(var(--room-width) - 50px);
-  background-color: var(--clr-room-button);
 }
 
 .user-button {
   height: 50px;
-  width: calc(var(--room-width) - 50px);
+  width: 100%;
+  border: none;
 }
 
 .add-remove-name {
