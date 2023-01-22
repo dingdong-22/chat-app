@@ -39,6 +39,13 @@ body {
 
 /* Rooms */
 
+.rooms-title {
+  text-align: center;
+  border: 1px black solid;
+  font-weight: 550;
+  background-color: var(--clr-rooms-title);
+}
+
 .room-selector-container {
   display: grid;
   grid-template-columns: var(--room-width);
@@ -50,7 +57,6 @@ body {
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
-  overflow: hidden;
 }
 
 .room-button-container {
@@ -66,17 +72,14 @@ body {
   background-color: var(--clr-room-button);
 }
 
+.room-button.current {
+  background-color: red;
+}
+
 .add-room-button {
   width: var(--room-width);
   height: var(--outer-row-height);
   background-color: var(--clr-add-room-button);
-}
-
-.rooms-title {
-  text-align: center;
-  border: 1px black solid;
-  font-weight: 550;
-  background-color: var(--clr-rooms-title);
 }
 
 /* chat */
@@ -178,6 +181,9 @@ body {
 }
 
 .user-list-title {
+  text-align: center;
+  border: 1px black solid;
+  font-weight: 550;
   background-color: var(--clr-user-list-title);
 }
 
@@ -185,7 +191,6 @@ body {
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
-  overflow: hidden;
 }
 
 .user-button-container {

@@ -9,9 +9,6 @@ import {
   orderBy,
   doc,
   getDoc,
-  exists,
-  getDocs,
-  data,
 } from "firebase/firestore";
 
 import { auth, db } from "../firebase";
@@ -21,7 +18,7 @@ function RoomSelector(props) {
 
   useEffect(() => {
     console.log("Getting rooms");
-    
+
     let roomsQuery = query(
       collection(db, "rooms"),
       where("users", "array-contains", auth.currentUser.uid),
@@ -32,11 +29,13 @@ function RoomSelector(props) {
     onSnapshot(roomsQuery, (querySnapshot) => {
       setRoomList(
         querySnapshot.docs.map((doc) => {
+          let currentClass = doc.id === props.room ? "current" : "";
           return (
             <div key={doc.id} className="room-button-container">
               <button
                 key={doc.id}
-                className={`room-button`}
+                id={`R${doc.id}`}
+                className={`room-button ${currentClass}`}
                 value={doc.id}
                 onClick={(e) => changeRoom(e.target.value)}
               >
@@ -47,7 +46,6 @@ function RoomSelector(props) {
         })
       );
     });
-
   }, []);
 
   async function checkPublic(value) {
@@ -62,8 +60,15 @@ function RoomSelector(props) {
   }
 
   function changeRoom(value) {
+    let allRooms = document.querySelectorAll(`.room-button`);
+    for (let r of allRooms) {
+      r.classList.remove("current");
+    }
     props.setRoom(value);
     checkPublic(value);
+    //dummy R as CSS does not allow ids with leading digit
+    let newRoom = document.querySelector(`#R${value}`);
+    newRoom.classList.add("current");
   }
 
   async function addRoom() {
