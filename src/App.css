@@ -7,16 +7,22 @@ body {
   --users-width: 300px;
   --outer-row-height: 30px;
 
-  --clr-bg: #605f5f;
-  --clr-msg-bg: #1b6cdd;
-  --clr-msg-bg-sent: #2da545;
+  /* rooms variables */
+  --clr-room-selector-bg: hsl(0, 0%, 75%);
+  --clr-room-button: hsl(60, 2%, 92%);
+  --clr-add-room-button: hsl(60, 2%, 92%);
+  --clr-rooms-title: hsl(192, 93%, 58%);
 
-  --clr-user-list-bg: #925f5f;
+  /* chat variables */
+  --clr-bg: hsl(0, 1%, 37%);
+  --clr-msg-bg: hsl(210, 80%, 50%);
+  --clr-msg-bg-sent: hsl(132, 50%, 50%);
+  --clr-sign-out-button: hsl(60, 2%, 92%);
+  --clr-chat-top-row-container: hsl(0, 97%, 69%);
 
-  /* rooms variable */
-  --clr-room-selector-bg: #bebebe;
-  --clr-room-button: #ebebea;
-  --clr-add-room-button: #ebebea;
+  /* users variables */
+  --clr-user-list-title: hsl(101, 85%, 71%);
+  --clr-user-list-bg: hsl(0, 0%, 75%);
 }
 
 .App {
@@ -70,6 +76,7 @@ body {
   text-align: center;
   border: 1px black solid;
   font-weight: 550;
+  background-color: var(--clr-rooms-title);
 }
 
 /* chat */
@@ -82,13 +89,15 @@ body {
   grid-template-rows: 30px 540px 30px;
 }
 
-.sign-out-container {
+.chat-top-row-container {
   display: flex;
   justify-content: space-between;
   border: 1px black solid;
+  background-color: var(--clr-chat-top-row-container);
 }
 
 .sign-out {
+  background-color: var(--clr-sign-out-button);
 }
 
 .room-id {
@@ -156,7 +165,7 @@ body {
 
 .submit-message-button {
   width: 50px;
-  height: var(--outer-row-height);
+  height: calc(var(--outer-row-height) - 5px);
 }
 
 /* user */
@@ -166,4 +175,8 @@ body {
   grid-template-columns: var(--users-width);
   grid-template-rows: 30px 540px 30px;
   background-color: var(--clr-user-list-bg);
+}
+
+.user-list-title {
+  background-color: var(--clr-user-list-title);
 }
