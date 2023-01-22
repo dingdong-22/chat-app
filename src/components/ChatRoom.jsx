@@ -5,6 +5,8 @@ import {
   query,
   limit,
   orderBy,
+  getDoc,
+  doc,
 } from "firebase/firestore";
 
 import { auth, db } from "../firebase";
@@ -17,6 +19,7 @@ function ChatRoom() {
   let [messages, setMessages] = useState([]);
   let [room, setRoom] = useState("BEZDE9Bg87EqeTpSwrbW");
   let [isPublic, setIsPublic] = useState(true);
+  let [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     let messagesQuery = query(
@@ -24,14 +27,29 @@ function ChatRoom() {
       orderBy("createdAt"),
       limit(25)
     );
-      
-    console.log("Chatroom Snap")
+
+    console.log("Chatroom Snap");
     onSnapshot(messagesQuery, (querySnapshot) => {
       setMessages(
         querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
       );
     });
+
+    checkAdmin();
   }, [room]);
+
+  async function checkAdmin() {
+    let docRef = doc(db, `rooms/${room}`);
+    console.log("checking admin for room", room);
+    await getDoc(docRef).then((d) => {
+      let admins = d.data().admins;
+      if (admins.includes(auth.currentUser.uid)) {
+        setIsAdmin(true);
+      } else {
+        setIsAdmin(false);
+      }
+    });
+  }
 
   // console.log("In Chatroom:", room);
 
@@ -49,7 +67,7 @@ function ChatRoom() {
         </div>
         <SendMessage room={room} />
       </div>
-      <UserList room={room} isPublic={isPublic} />
+      <UserList room={room} isPublic={isPublic} isAdmin={isAdmin} />
     </div>
   );
 }

@@ -78,6 +78,7 @@ function RoomSelector(props) {
       users: [auth.currentUser.uid],
       public: false,
       createdAt: serverTimestamp(),
+      admins: [auth.currentUser.uid],
     });
 
     let addMessage = await addDoc(

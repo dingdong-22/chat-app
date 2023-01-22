@@ -176,7 +176,7 @@ body {
 .user-list-container {
   display: grid;
   grid-template-columns: var(--users-width);
-  grid-template-rows: 30px 540px 30px;
+  grid-template-rows: 30px 500px 70px;
   background-color: var(--clr-user-list-bg);
 }
 

@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { db, auth } from "../firebase";
 
-import { arrayUnion, doc, getDoc, updateDoc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
+import AddRemoveUsers from "./AddRemoveUsers";
 
 function UserList(props) {
   let [users, setUser] = useState([]);
-  let [userInput, setUserInput] = useState("");
+  let [update, setUpdate] = useState(false);
 
   async function getUsers() {
     let roomsDoc = doc(db, `rooms/${props.room}`);
@@ -17,18 +18,7 @@ function UserList(props) {
   useEffect(() => {
     console.log("Getting users");
     getUsers();
-  }, [props.room]);
-
-  async function addUser(e) {
-    e.preventDefault();
-    console.log("Adding", userInput);
-    let docRef = doc(db, `rooms/${props.room}`);
-    let temp = await updateDoc(docRef, {
-      users: arrayUnion(userInput),
-    });
-
-    setUserInput("");
-  }
+  }, [props.room, update]);
 
   function copyId(id) {
     navigator.clipboard.writeText(id);
@@ -54,16 +44,13 @@ function UserList(props) {
         })}
       </div>
       <div>
-        {props.isPublic ? null : (
-          <form onSubmit={(e) => addUser(e)}>
-            <input
-              type="text"
-              value={userInput}
-              onChange={(e) => setUserInput(e.target.value)}
-            />
-            <button type="submit">Add user</button>
-          </form>
-        )}
+        {props.isAdmin ? (
+          <AddRemoveUsers
+            room={props.room}
+            update={update}
+            setUpdate={setUpdate}
+          />
+        ) : null}
       </div>
     </div>
   );
