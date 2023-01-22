@@ -25,11 +25,11 @@ function RoomSelector(props) {
     );
 
     onSnapshot(roomsQuery, (querySnapshot) => {
-      console.log("Room Selector Snap")
+      console.log("Room Selector Snap");
       setRoomList(
         querySnapshot.docs.map((doc) => {
           return (
-            <div className="room-button-container">
+            <div key={doc.id} className="room-button-container">
               <button
                 key={doc.id}
                 className={`room-button`}

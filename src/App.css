@@ -180,3 +180,20 @@ body {
 .user-list-title {
   background-color: var(--clr-user-list-title);
 }
+
+.user-container {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  overflow: hidden;
+}
+
+.user-button-container {
+  height: 50px;
+  width: calc(var(--room-width) - 50px);
+}
+
+.user-button {
+  height: 50px;
+  width: calc(var(--room-width) - 50px);
+}

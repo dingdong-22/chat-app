@@ -15,7 +15,7 @@ function UserList(props) {
   }
 
   useEffect(() => {
-    console.log("Getting users")
+    console.log("Getting users");
     getUsers();
   }, [props.room]);
 
@@ -30,12 +30,27 @@ function UserList(props) {
     setUserInput("");
   }
 
+  function copyId(id) {
+    navigator.clipboard.writeText(id);
+  }
+
   return (
     <div className="user-list-container">
       <div className="user-list-title">User List</div>
-      <div>
+      <div className="user-container">
         {users.map((x) => {
-          return <div key={x}>{x}</div>;
+          return (
+            <div key={x} className="user-button-container">
+              <button
+                key={x}
+                className="user-button"
+                value={x}
+                onClick={(e) => copyId(e.target.value)}
+              >
+                {x}
+              </button>
+            </div>
+          );
         })}
       </div>
       <div>
