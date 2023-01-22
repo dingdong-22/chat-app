@@ -3,7 +3,7 @@ body {
   place-content: center;
 
   --room-width: 300px;
-  --chat-width: 500px;
+  --chat-width: 600px;
   --users-width: 300px;
   --outer-row-height: 30px;
 
@@ -97,9 +97,13 @@ body {
   justify-content: space-between;
   border: 1px black solid;
   background-color: var(--clr-chat-top-row-container);
+  font-weight: 550;
 }
 
 .sign-out {
+  padding: 0;
+  border: 0;
+  width: 80px;
   background-color: var(--clr-sign-out-button);
 }
 
@@ -152,13 +156,14 @@ body {
   align-items: center;
 }
 
-.form {
+form {
+  display: flex;
   width: var(--chat-width);
   height: var(--outer-row-height);
 }
 
 .message-input {
-  width: 450px;
+  width: calc(var(--chat-width)*0.85);
   height: var(--outer-row-height);
   font-size: 1.2rem;
   outline: none;
@@ -167,8 +172,10 @@ body {
 }
 
 .submit-message-button {
-  width: 50px;
-  height: calc(var(--outer-row-height) - 5px);
+  width: calc(var(--chat-width)*0.15);
+  height: calc(var(--outer-row-height));
+  padding: 0;
+  border: 0;
 }
 
 /* user */
@@ -202,4 +209,27 @@ body {
 .user-button {
   height: 50px;
   width: calc(var(--room-width) - 50px);
+}
+
+.add-remove-name {
+  width: var(--users-width);
+  height: 25px;
+  padding: 0;
+  border: none;
+  outline: none;
+  font-size: 1.1rem;
+}
+
+.add-remove-buttons {
+  width: calc(var(--users-width) / 2);
+  height: 20px;
+  padding: 0;
+  border: 0;
+}
+
+.clear-button {
+  width: var(--users-width);
+  height: 20px;
+  padding: 0;
+  border: 0;
 }

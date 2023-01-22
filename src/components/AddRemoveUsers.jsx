@@ -44,14 +44,30 @@ function AddRemoveUsers(props) {
   }
 
   return (
-    <div>
+    <div className="add-remove-container">
       <input
+        className="add-remove-name"
         type="text"
         value={userInput}
         onChange={(e) => setUserInput(e.target.value)}
       />
-      <button onClick={() => addOrRemoveUser(true)}>Add user</button>
-      <button onClick={() => addOrRemoveUser(false)}>Remove user</button>
+      <div>
+        <button
+          className="add-remove-buttons"
+          onClick={() => addOrRemoveUser(true)}
+        >
+          Add user
+        </button>
+        <button
+          className="add-remove-buttons"
+          onClick={() => addOrRemoveUser(false)}
+        >
+          Remove user
+        </button>
+        <button className="clear-button" onClick={() => setUserInput("")}>
+          Clear
+        </button>
+      </div>
     </div>
   );
 }
