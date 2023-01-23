@@ -7,6 +7,7 @@ import AddRemoveUsers from "./AddRemoveUsers";
 function UserList({ room, isPublic, isAdmin }) {
   let [users, setUsers] = useState([]);
   let [update, setUpdate] = useState(false);
+  let [userInput, setUserInput] = useState("");
 
   async function getUsers() {
     let docRef = doc(db, `rooms/${room}`);
@@ -34,6 +35,7 @@ function UserList({ room, isPublic, isAdmin }) {
 
   function copyId(id) {
     navigator.clipboard.writeText(id);
+    setUserInput(id);
   }
 
   return (
@@ -59,7 +61,13 @@ function UserList({ room, isPublic, isAdmin }) {
       </div>
       <div>
         {isAdmin ? (
-          <AddRemoveUsers room={room} update={update} setUpdate={setUpdate} />
+          <AddRemoveUsers
+            room={room}
+            update={update}
+            setUpdate={setUpdate}
+            userInput={userInput}
+            setUserInput={setUserInput}
+          />
         ) : null}
       </div>
     </div>

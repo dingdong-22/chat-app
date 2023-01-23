@@ -30,6 +30,7 @@ function SendMessage({ room }) {
           className="message-input"
           type="text"
           value={message}
+          placeholder="Start messaging!"
           onChange={(e) => setMessage(e.target.value)}
         />
         <button className="submit-message-button" type="submit">

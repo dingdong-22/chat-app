@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { db } from "../firebase";
 
 import {
@@ -9,8 +9,7 @@ import {
   arrayRemove,
 } from "firebase/firestore";
 
-function AddRemoveUsers({ room, update, setUpdate }) {
-  let [userInput, setUserInput] = useState("");
+function AddRemoveUsers({ room, update, setUpdate, userInput, setUserInput }) {
 
   async function addOrRemoveUser(add) {
     //check if user exists
@@ -46,6 +45,7 @@ function AddRemoveUsers({ room, update, setUpdate }) {
         className="add-remove-name"
         type="text"
         value={userInput}
+        placeholder="Enter user id"
         onChange={(e) => setUserInput(e.target.value)}
       />
       <div>

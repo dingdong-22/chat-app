@@ -194,7 +194,7 @@ form {
   font-size: 1.2rem;
   outline: none;
   border: none;
-  padding: 0px 0px;
+  padding: 0px 10px 0px 10px;
 }
 
 .submit-message-button {
@@ -247,10 +247,10 @@ form {
 .add-remove-name {
   width: var(--users-width);
   height: 25px;
-  padding: 0;
   border: none;
   outline: none;
   font-size: 1.1rem;
+  padding: 0px 10px 0px 10px;
 }
 
 .add-remove-buttons {

@@ -6,7 +6,7 @@ function DeleteRoom({ room, setRoom }) {
   async function disableRoom() {
     let docRef = doc(db, `rooms/${room}`);
     let disablingRoom = await updateDoc(docRef, {
-      up: false,
+      disabled: true,
     });
 
     setRoom(defaultRoom);

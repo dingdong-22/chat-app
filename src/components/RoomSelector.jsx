@@ -22,7 +22,7 @@ function RoomSelector({ room, setRoom, setIsPublic, isAdmin }) {
     let roomsQuery = query(
       collection(db, "rooms"),
       where("users", "array-contains", auth.currentUser.uid),
-      where("up", "==", true),
+      where("disabled", "==", false),
       orderBy("public", "desc"),
       orderBy("createdAt")
     );
@@ -68,7 +68,7 @@ function RoomSelector({ room, setRoom, setIsPublic, isAdmin }) {
       public: false,
       createdAt: serverTimestamp(),
       admins: [auth.currentUser.uid],
-      up: true,
+      disabled: false,
     });
 
     let addMessage = await addDoc(
