@@ -1,5 +1,11 @@
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
+import {
+  doc,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
+  setDoc,
+} from "firebase/firestore";
 
 import { auth, db } from "../firebase";
 
@@ -15,10 +21,20 @@ function SignIn() {
     }
   }
 
+  async function userDetails() {
+    let colRef = doc(db, `users/${auth.currentUser.uid}`);
+    //maybe add user name here too
+    await setDoc(colRef, {
+      uid: auth.currentUser.uid,
+      photoURL: auth.currentUser.photoURL,
+    });
+  }
+
   function signInWithGoogle() {
     let provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
       .then(() => defaultRooms())
+      .then(() => userDetails())
       .catch((error) => console.log(error));
   }
 

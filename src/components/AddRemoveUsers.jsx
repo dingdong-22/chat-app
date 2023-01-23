@@ -14,15 +14,15 @@ function AddRemoveUsers(props) {
 
   async function addOrRemoveUser(add) {
     console.log("Input:", userInput);
-
     //check if user exists
-    let docRef = doc(db, `rooms/BEZDE9Bg87EqeTpSwrbW`);
+    let docRef = doc(db, `users/${userInput}`);
 
     let exists = await getDoc(docRef).then((d) => {
-      if (d.data().users.includes(userInput)) {
-        return true;
-      } else {
-        return false;
+      if (d.exists()) {
+        return true
+      }
+      else {
+        return false
       }
     });
 

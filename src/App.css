@@ -28,11 +28,13 @@ body {
 }
 
 .App {
+  display: grid;
+  place-content: center;
   width: calc(var(--room-width) + var(--chat-width) + var(--users-width));
   height: 600px;
   /* border: 1px black solid; */
   background-color: var(--clr-bg);
-  border-radius: 1%;
+  border-radius: 10px;
   overflow: hidden;
 }
 
@@ -156,6 +158,13 @@ body {
   align-self: flex-end;
   flex-direction: row-reverse;
   background-color: var(--clr-msg-bg-sent);
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.received {
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .send-message-container {
@@ -196,7 +205,6 @@ form {
 
 .user-list-title {
   text-align: center;
-  border: 1px black solid;
   font-weight: 550;
   background-color: var(--clr-user-list-title);
 }
@@ -212,9 +220,18 @@ form {
 }
 
 .user-button {
+  display: flex;
   height: 50px;
   width: 100%;
   border: none;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.user-button-image {
+  width: 25px;
+  height: 25px;
 }
 
 .add-remove-name {

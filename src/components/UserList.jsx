@@ -5,14 +5,27 @@ import { doc, getDoc } from "firebase/firestore";
 import AddRemoveUsers from "./AddRemoveUsers";
 
 function UserList(props) {
-  let [users, setUser] = useState([]);
+  let [users, setUsers] = useState([]);
   let [update, setUpdate] = useState(false);
 
   async function getUsers() {
     let roomsDoc = doc(db, `rooms/${props.room}`);
+    let holder = [];
     let getRoomsDoc = await getDoc(roomsDoc).then((d) => {
-      setUser(d.data().users);
+      holder = d.data().users;
     });
+
+    let holder2 = [];
+    for (let x of holder) {
+      let userDoc = doc(db, `users/${x}`);
+      let temp = await getDoc(userDoc).then((d) => {
+        holder2.push({
+          uid: d.data().uid,
+          photoURL: d.data().photoURL,
+        });
+      });
+    }
+    setUsers(holder2);
   }
 
   useEffect(() => {
@@ -28,16 +41,18 @@ function UserList(props) {
     <div className="user-list-container">
       <div className="user-list-title">User List</div>
       <div className="user-container">
-        {users.map((x) => {
+        {users.map(({ uid, photoURL }) => {
+          console.log(uid, photoURL);
           return (
-            <div key={x} className="user-button-container">
+            <div key={uid} className="user-button-container">
               <button
-                key={x}
+                key={uid}
                 className="user-button"
-                value={x}
+                value={uid}
                 onClick={(e) => copyId(e.target.value)}
               >
-                {x}
+                {uid}
+                <img className="user-button-image" src={photoURL} alt="" />
               </button>
             </div>
           );
