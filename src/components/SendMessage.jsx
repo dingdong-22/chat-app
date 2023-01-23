@@ -3,16 +3,16 @@ import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 import { auth, db } from "../firebase";
 
-function SendMessage(props) {
+function SendMessage({ room }) {
   let [message, setMessage] = useState("");
 
   async function sendMessage(e) {
     e.preventDefault();
-    let colRef = collection(db, `rooms/${props.room}/messages`);
+    let colRef = collection(db, `rooms/${room}/messages`);
 
     let { photoURL, uid } = auth.currentUser;
 
-    let temp = await addDoc(colRef, {
+    let addingMessage = await addDoc(colRef, {
       text: message,
       photoURL,
       uid,

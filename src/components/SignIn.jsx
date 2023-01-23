@@ -3,7 +3,6 @@ import {
   doc,
   updateDoc,
   arrayUnion,
-  arrayRemove,
   setDoc,
 } from "firebase/firestore";
 
@@ -22,9 +21,9 @@ function SignIn() {
   }
 
   async function userDetails() {
-    let colRef = doc(db, `users/${auth.currentUser.uid}`);
+    let docRef = doc(db, `users/${auth.currentUser.uid}`);
     //maybe add user name here too
-    await setDoc(colRef, {
+    await setDoc(docRef, {
       uid: auth.currentUser.uid,
       photoURL: auth.currentUser.photoURL,
     });

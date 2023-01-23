@@ -9,7 +9,7 @@ import {
   doc,
 } from "firebase/firestore";
 
-import { auth, db } from "../firebase";
+import { auth, db, defaultRoom } from "../firebase";
 import SignOut from "./SignOut";
 import SendMessage from "./SendMessage";
 import RoomSelector from "./RoomSelector";
@@ -17,10 +17,11 @@ import UserList from "./UserList";
 
 function ChatRoom() {
   let [messages, setMessages] = useState([]);
-  let [room, setRoom] = useState("BEZDE9Bg87EqeTpSwrbW");
+  let [room, setRoom] = useState(defaultRoom);
   let [isPublic, setIsPublic] = useState(true);
   let [isAdmin, setIsAdmin] = useState(false);
 
+  //display messages of current room
   useEffect(() => {
     let messagesQuery = query(
       collection(db, `rooms/${room}/messages`),
@@ -28,7 +29,6 @@ function ChatRoom() {
       limit(25)
     );
 
-    console.log("Chatroom Snap");
     onSnapshot(messagesQuery, (querySnapshot) => {
       setMessages(
         querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
@@ -38,6 +38,7 @@ function ChatRoom() {
     checkAdmin();
   }, [room]);
 
+  //check if user is a admin of the current room
   async function checkAdmin() {
     let docRef = doc(db, `rooms/${room}`);
     console.log("checking admin for room", room);
@@ -50,8 +51,6 @@ function ChatRoom() {
       }
     });
   }
-
-  // console.log("In Chatroom:", room);
 
   return (
     <div className="main-container">

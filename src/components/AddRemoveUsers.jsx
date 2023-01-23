@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { db, auth } from "../firebase";
+import { db } from "../firebase";
 
 import {
   arrayUnion,
@@ -9,37 +9,34 @@ import {
   arrayRemove,
 } from "firebase/firestore";
 
-function AddRemoveUsers(props) {
+function AddRemoveUsers({ room, update, setUpdate }) {
   let [userInput, setUserInput] = useState("");
 
   async function addOrRemoveUser(add) {
-    console.log("Input:", userInput);
     //check if user exists
     let docRef = doc(db, `users/${userInput}`);
-
     let exists = await getDoc(docRef).then((d) => {
       if (d.exists()) {
-        return true
-      }
-      else {
-        return false
+        return true;
+      } else {
+        return false;
       }
     });
 
     if (exists) {
-      docRef = doc(db, `rooms/${props.room}`);
+      docRef = doc(db, `rooms/${room}`);
       if (add) {
         console.log("adding", userInput);
-        let temp = await updateDoc(docRef, {
+        let addingUser = await updateDoc(docRef, {
           users: arrayUnion(userInput),
         });
       } else {
-        let temp = await updateDoc(docRef, {
+        let removingUser = await updateDoc(docRef, {
           users: arrayRemove(userInput),
         });
       }
     }
-    props.setUpdate(!props.update);
+    setUpdate(!update);
     setUserInput("");
   }
 

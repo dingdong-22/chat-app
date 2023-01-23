@@ -1,20 +1,15 @@
-import {
-  doc,
-  updateDoc,
-} from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 
-import { auth, db } from "../firebase";
+import { db, defaultRoom } from "../firebase";
 
-function DeleteRoom(props) {
-
+function DeleteRoom({ room, setRoom }) {
   async function disableRoom() {
-    let roomRef = doc(db, `rooms/${props.room}`);
-
-    let temp = await updateDoc(roomRef, {
+    let docRef = doc(db, `rooms/${room}`);
+    let disablingRoom = await updateDoc(docRef, {
       up: false,
     });
 
-    props.setRoom("BEZDE9Bg87EqeTpSwrbW");
+    setRoom(defaultRoom);
   }
 
   return (

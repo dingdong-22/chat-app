@@ -18,4 +18,6 @@ let auth = getAuth(firebaseApp);
 
 let db = getFirestore(firebaseApp);
 
-export { auth, db };
+let defaultRoom = "BEZDE9Bg87EqeTpSwrbW"
+
+export { auth, db, defaultRoom };

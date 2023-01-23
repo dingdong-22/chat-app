@@ -14,12 +14,11 @@ import {
 import { auth, db } from "../firebase";
 import DeleteRoom from "./DeleteRoom";
 
-function RoomSelector(props) {
+function RoomSelector({ room, setRoom, setIsPublic, isAdmin }) {
   let [roomList, setRoomList] = useState([]);
 
+  //display rooms that the current user has access to
   useEffect(() => {
-    console.log("Getting rooms");
-
     let roomsQuery = query(
       collection(db, "rooms"),
       where("users", "array-contains", auth.currentUser.uid),
@@ -31,7 +30,7 @@ function RoomSelector(props) {
     onSnapshot(roomsQuery, (querySnapshot) => {
       setRoomList(
         querySnapshot.docs.map((doc) => {
-          let currentClass = doc.id === props.room ? "current" : "";
+          let currentClass = doc.id === room ? "current" : "";
           return (
             <div key={doc.id} className="room-button-container">
               <button
@@ -50,23 +49,12 @@ function RoomSelector(props) {
     });
   }, []);
 
-  async function checkPublic(value) {
-    let docRef = doc(db, `rooms/${value}`);
-    let temp = await getDoc(docRef).then((d) => {
-      if (d.data().public) {
-        props.setIsPublic(true);
-      } else {
-        props.setIsPublic(false);
-      }
-    });
-  }
-
   function changeRoom(value) {
     let allRooms = document.querySelectorAll(`.room-button`);
     for (let r of allRooms) {
       r.classList.remove("current");
     }
-    props.setRoom(value);
+    setRoom(value);
     checkPublic(value);
     //dummy R as CSS does not allow ids with leading digit
     let newRoom = document.querySelector(`#R${value}`);
@@ -75,31 +63,39 @@ function RoomSelector(props) {
 
   async function addRoom() {
     let colRef = collection(db, "rooms");
-    console.log("Adding room");
     let newRoom = await addDoc(colRef, {
       users: [auth.currentUser.uid],
       public: false,
       createdAt: serverTimestamp(),
       admins: [auth.currentUser.uid],
-      up: true
+      up: true,
     });
 
     let addMessage = await addDoc(
       collection(db, "rooms", newRoom.id, "messages"),
       {
-        text: "Created",
+        text: "Created New Room",
         createdAt: serverTimestamp(),
       }
     );
+  }
+
+  async function checkPublic(value) {
+    let docRef = doc(db, `rooms/${value}`);
+    let temp = await getDoc(docRef).then((d) => {
+      if (d.data().public) {
+        setIsPublic(true);
+      } else {
+        setIsPublic(false);
+      }
+    });
   }
 
   return (
     <div className="room-selector-container">
       <div className="rooms-title">
         Rooms
-        {props.isAdmin ? (
-          <DeleteRoom room={props.room} setRoom={props.setRoom} />
-        ) : null}
+        {isAdmin ? <DeleteRoom room={room} setRoom={setRoom} /> : null}
       </div>
       <div className="room-container">{roomList}</div>
       <div>
