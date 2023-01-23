@@ -12,6 +12,7 @@ import {
 } from "firebase/firestore";
 
 import { auth, db } from "../firebase";
+import DeleteRoom from "./DeleteRoom";
 
 function RoomSelector(props) {
   let [roomList, setRoomList] = useState([]);
@@ -22,6 +23,7 @@ function RoomSelector(props) {
     let roomsQuery = query(
       collection(db, "rooms"),
       where("users", "array-contains", auth.currentUser.uid),
+      where("up", "==", true),
       orderBy("public", "desc"),
       orderBy("createdAt")
     );
@@ -79,6 +81,7 @@ function RoomSelector(props) {
       public: false,
       createdAt: serverTimestamp(),
       admins: [auth.currentUser.uid],
+      up: true
     });
 
     let addMessage = await addDoc(
@@ -92,7 +95,12 @@ function RoomSelector(props) {
 
   return (
     <div className="room-selector-container">
-      <div className="rooms-title">Rooms</div>
+      <div className="rooms-title">
+        Rooms
+        {props.isAdmin ? (
+          <DeleteRoom room={props.room} setRoom={props.setRoom} />
+        ) : null}
+      </div>
       <div className="room-container">{roomList}</div>
       <div>
         <button className="add-room-button" onClick={() => addRoom()}>

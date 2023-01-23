@@ -9,11 +9,12 @@ body {
 
   /* rooms variables */
   --clr-rooms-title: hsl(188, 98%, 40%);
-  --clr-room-selector-bg: hsl(226, 83%, 53%);
+  --clr-room-selector-bg: hsl(226, 68%, 78%);
   --clr-add-room-button: hsl(188, 98%, 40%);
   --clr-room-button: hsl(0, 0%, 95%);
   --clr-room-button-hover: hsl(215, 80%, 56%);
   --clr-current-room-button: hsl(215, 80%, 56%);
+  --clr-delete-room-button: hsl(0, 71%, 60%);
 
   /* chat variables */
   --clr-bg: hsl(0, 0%, 95%);
@@ -53,6 +54,8 @@ body {
 }
 
 .rooms-title {
+  display: flex;
+  justify-content: space-between;
   text-align: center;
   font-weight: 550;
   background-color: var(--clr-rooms-title);
@@ -93,6 +96,13 @@ body {
   padding: 0;
 }
 
+.delete-room-button {
+  height: 30px;
+  width: 100px;
+  background-color: var(--clr-delete-room-button);
+  border: 0;
+  padding: 0;
+}
 /* chat */
 
 .chat-room {

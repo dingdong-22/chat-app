@@ -55,7 +55,12 @@ function ChatRoom() {
 
   return (
     <div className="main-container">
-      <RoomSelector room={room} setRoom={setRoom} setIsPublic={setIsPublic} />
+      <RoomSelector
+        room={room}
+        setRoom={setRoom}
+        setIsPublic={setIsPublic}
+        isAdmin={isAdmin}
+      />
       <div className="chat-room">
         <SignOut room={room} />
         <div className="message-container">
