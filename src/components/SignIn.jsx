@@ -1,14 +1,11 @@
+import { useState } from "react";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import {
-  doc,
-  updateDoc,
-  arrayUnion,
-  setDoc,
-} from "firebase/firestore";
+import { doc, updateDoc, arrayUnion, setDoc } from "firebase/firestore";
 
 import { auth, db } from "../firebase";
 
 function SignIn() {
+  let [username, setUsername] = useState("");
   let publicRooms = ["BEZDE9Bg87EqeTpSwrbW", "UUjqwU3MRxq0jE5AhnsY"];
 
   async function defaultRooms() {
@@ -26,6 +23,7 @@ function SignIn() {
     await setDoc(docRef, {
       uid: auth.currentUser.uid,
       photoURL: auth.currentUser.photoURL,
+      username: username,
     });
   }
 
@@ -39,9 +37,18 @@ function SignIn() {
 
   return (
     <div className="sign-in-container">
-      <button className="sign-in" onClick={() => signInWithGoogle()}>
-        Sign in
-      </button>
+      <input
+        className="username-input"
+        type="text"
+        value={username}
+        placeholder="Optional: Enter username"
+        onChange={(e) => setUsername(e.target.value)}
+      />
+      <div>
+        <button className="sign-in" onClick={() => signInWithGoogle()}>
+          Sign in
+        </button>
+      </div>
     </div>
   );
 }

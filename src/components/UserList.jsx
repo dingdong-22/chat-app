@@ -23,6 +23,7 @@ function UserList({ room, isPublic, isAdmin }) {
         holder2.push({
           uid: d.data().uid,
           photoURL: d.data().photoURL,
+          username: d.data().username,
         });
       });
     }
@@ -42,8 +43,7 @@ function UserList({ room, isPublic, isAdmin }) {
     <div className="user-list-container">
       <div className="user-list-title">User List</div>
       <div className="user-container">
-        {users.map(({ uid, photoURL }) => {
-          console.log(uid, photoURL);
+        {users.map(({ uid, photoURL, username }) => {
           return (
             <div key={uid} className="user-button-container">
               <button
@@ -52,7 +52,7 @@ function UserList({ room, isPublic, isAdmin }) {
                 value={uid}
                 onClick={(e) => copyId(e.target.value)}
               >
-                {uid}
+                {username ? username : uid}
                 <img className="user-button-image" src={photoURL} alt="" />
               </button>
             </div>

@@ -280,3 +280,15 @@ form {
   padding: 0;
   border: 0;
 }
+
+/* sign in */
+
+.sign-in-container {
+  display: grid;
+  place-items: center;
+}
+
+.username-input {
+  width: 200px;
+  height: 25px;
+}
