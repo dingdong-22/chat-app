@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
 
 import {
   arrayUnion,
@@ -10,9 +9,14 @@ import {
 } from "firebase/firestore";
 
 function AddRemoveUsers({ room, update, setUpdate, userInput, setUserInput }) {
-
   async function addOrRemoveUser(add) {
+    if (userInput === auth.currentUser.uid) {
+      setUserInput("");
+      return;
+    }
+
     //check if user exists
+
     let docRef = doc(db, `users/${userInput}`);
     let exists = await getDoc(docRef).then((d) => {
       if (d.exists()) {

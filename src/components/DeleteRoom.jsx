@@ -13,7 +13,7 @@ function DeleteRoom({ room, setRoom }) {
   }
 
   return (
-    <div>
+    <div className="delete-room-container">
       <button className="delete-room-button" onClick={() => disableRoom()}>
         Delete Room
       </button>

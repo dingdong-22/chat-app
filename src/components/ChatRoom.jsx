@@ -81,15 +81,19 @@ function ChatMessage({ text, photoURL, uid }) {
   let messageClass = uid === auth.currentUser.uid ? "sent" : "received";
   return (
     <div className={`message ${messageClass}`}>
-      <img
-        className="message-photo"
-        onClick={() => {
-          navigator.clipboard.writeText(uid);
-        }}
-        src={photoURL}
-        alt=""
-      ></img>
-      <p className="text">{text}</p>
+      <div className="message-image">
+        <img
+          className="message-photo"
+          onClick={() => {
+            navigator.clipboard.writeText(uid);
+          }}
+          src={photoURL}
+          alt=""
+        ></img>
+      </div>
+      <div className={`message-text ${messageClass}`}>
+        <p className="text">{text}</p>
+      </div>
     </div>
   );
 }
