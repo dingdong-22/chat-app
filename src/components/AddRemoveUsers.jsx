@@ -52,22 +52,26 @@ function AddRemoveUsers({ room, update, setUpdate, userInput, setUserInput }) {
         placeholder="Enter user id"
         onChange={(e) => setUserInput(e.target.value)}
       />
-      <div>
-        <button
-          className="add-remove-buttons"
-          onClick={() => addOrRemoveUser(true)}
-        >
-          Add user
-        </button>
-        <button
-          className="add-remove-buttons"
-          onClick={() => addOrRemoveUser(false)}
-        >
-          Remove user
-        </button>
-        <button className="clear-button" onClick={() => setUserInput("")}>
-          Clear
-        </button>
+      <div className="add-remove-buttons-container">
+        <div>
+          <button
+            className="add-button"
+            onClick={() => addOrRemoveUser(true)}
+          >
+            Add user
+          </button>
+          <button
+            className="remove-button"
+            onClick={() => addOrRemoveUser(false)}
+          >
+            Remove user
+          </button>
+        </div>
+        <div className="clear-button-container">
+          <button className="clear-button" onClick={() => setUserInput("")}>
+            Clear
+          </button>
+        </div>
       </div>
     </div>
   );

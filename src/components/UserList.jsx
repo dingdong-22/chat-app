@@ -52,8 +52,8 @@ function UserList({ room, isPublic, isAdmin }) {
                 value={uid}
                 onClick={(e) => copyId(e.target.value)}
               >
-                {username ? username : uid}
                 <img className="user-button-image" src={photoURL} alt="" />
+                {username ? username : uid}
               </button>
             </div>
           );

@@ -1,6 +1,6 @@
 body {
-  display: grid;
-  place-content: center;
+  /* display: grid;
+  place-content: center; */
   background-color: hsl(0, 0%, 87%);
   --room-width: 300px;
   --chat-width: 600px;
@@ -14,34 +14,32 @@ body {
   --clr-room-button: hsl(0, 0%, 95%);
   --clr-room-button-hover: hsl(215, 80%, 56%);
   --clr-current-room-button: hsl(215, 80%, 56%);
-  --clr-delete-room-button: hsl(0, 71%, 60%);
-
+  
   /* chat variables */
   --clr-bg: hsl(0, 0%, 95%);
   --clr-chat-top-row-container: hsl(188, 72%, 61%);
   --clr-sign-out-button: hsl(188, 98%, 40%);
   --clr-msg-bg: hsl(211, 60%, 66%);
   --clr-msg-bg-sent: hsl(188, 72%, 61%);
-
+  
   /* users variables */
   --clr-user-list-title: hsl(188, 98%, 40%);
   --clr-user-list-bg: hsl(0, 0%, 95%);
+
+  /* other */
+  --clr-deletion-button: hsl(0, 71%, 60%);
 }
 
 .App {
   display: grid;
   place-content: center;
-  width: calc(var(--room-width) + var(--chat-width) + var(--users-width));
-  height: 600px;
-  /* border: 1px black solid; */
-  background-color: var(--clr-bg);
-  border-radius: 10px;
-  overflow: hidden;
 }
 
 .main-container {
   display: grid;
   grid-template-columns: var(--room-width) var(--chat-width) var(--users-width);
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 /* Rooms */
@@ -63,7 +61,7 @@ body {
 .delete-room-button {
   height: 30px;
   width: 100px;
-  background-color: var(--clr-delete-room-button);
+  background-color: var(--clr-deletion-button);
   border: 0;
   padding: 0;
   margin-left: auto;
@@ -116,6 +114,7 @@ body {
   display: grid;
   grid-template-columns: var(--chat-width);
   grid-template-rows: 30px 530px 40px;
+  background-color: var(--clr-bg);
 }
 
 .chat-top-row-container {
@@ -223,7 +222,7 @@ form {
 .user-list-container {
   display: grid;
   grid-template-columns: var(--users-width);
-  grid-template-rows: 30px 500px 70px;
+  grid-template-rows: 30px 490px 80px;
   background-color: var(--clr-user-list-bg);
 }
 
@@ -249,35 +248,46 @@ form {
   width: 100%;
   border: none;
   align-items: center;
-  gap: 10px;
-  padding: 0px 0px 0px 20px;
+  gap: 20px;
+  padding: 0px 0px 0px 0px;
 }
 
 .user-button-image {
   width: 40px;
   height: 40px;
-  margin-left: auto;
 }
 
 .add-remove-name {
   width: var(--users-width);
-  height: 25px;
+  height: 30px;
   border: none;
   outline: none;
   font-size: 1.1rem;
   padding: 0px 10px 0px 10px;
 }
 
-.add-remove-buttons {
+.add-remove-container {
+  height: 80px;
+}
+
+.add-remove-buttons-container, .clear-button-container {
+  height: 25px;
+}
+
+.add-button, .remove-button {
   width: calc(var(--users-width) / 2);
-  height: 20px;
+  height: 25px;
   padding: 0;
   border: 0;
 }
 
+.remove-button {
+  background-color: var(--clr-deletion-button);
+}
+
 .clear-button {
   width: var(--users-width);
-  height: 20px;
+  height: 25px;
   padding: 0;
   border: 0;
 }
@@ -298,4 +308,5 @@ form {
 
 button:hover {
   cursor: pointer;
+  filter: brightness(125%);
 }
