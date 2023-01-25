@@ -120,9 +120,9 @@ body {
 
 .chat-top-row-container {
   display: flex;
-  justify-content: space-between;
   background-color: var(--clr-chat-top-row-container);
   font-weight: 550;
+  padding: 0px 0px 0px 180px;
 }
 
 .sign-out {
@@ -130,6 +130,7 @@ body {
   border: 0;
   width: 80px;
   background-color: var(--clr-sign-out-button);
+  margin-left: auto;
 }
 
 .room-id {
@@ -291,4 +292,10 @@ form {
 .username-input {
   width: 200px;
   height: 25px;
+}
+
+/* other */
+
+button:hover {
+  cursor: pointer;
 }

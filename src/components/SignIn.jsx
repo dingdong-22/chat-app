@@ -19,12 +19,26 @@ function SignIn() {
 
   async function userDetails() {
     let docRef = doc(db, `users/${auth.currentUser.uid}`);
-    //maybe add user name here too
-    await setDoc(docRef, {
-      uid: auth.currentUser.uid,
-      photoURL: auth.currentUser.photoURL,
-      username: username,
-    });
+    if (username) {
+      await setDoc(
+        docRef,
+        {
+          uid: auth.currentUser.uid,
+          photoURL: auth.currentUser.photoURL,
+          username: username,
+        },
+        { merge: true }
+      );
+    } else {
+      await setDoc(
+        docRef,
+        {
+          uid: auth.currentUser.uid,
+          photoURL: auth.currentUser.photoURL,
+        },
+        { merge: true }
+      );
+    }
   }
 
   function signInWithGoogle() {

@@ -41,7 +41,6 @@ function ChatRoom() {
   //check if user is a admin of the current room
   async function checkAdmin() {
     let docRef = doc(db, `rooms/${room}`);
-    console.log("checking admin for room", room);
     await getDoc(docRef).then((d) => {
       let admins = d.data().admins;
       if (admins.includes(auth.currentUser.uid)) {
@@ -50,6 +49,8 @@ function ChatRoom() {
         setIsAdmin(false);
       }
     });
+    let anchor = document.getElementById("anchor");
+    anchor.scrollIntoView();
   }
 
   return (
