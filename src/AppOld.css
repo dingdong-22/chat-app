@@ -1,11 +1,11 @@
 body {
   /* display: grid;
-  place-content: center; */
-  /* width: 100vw; */
+    place-content: center; */
   background-color: hsl(0, 0%, 87%);
-  --room-width: 20vw;
-  --chat-width: 50vw;
-  --users-width: 20vw;
+  --room-width: 1vw;
+  --chat-width: 0.2vw;
+  --users-width: 0.2vw;
+  --outer-row-height: 40px;
 
   /* rooms variables */
   --clr-rooms-title: hsl(188, 98%, 40%);
@@ -14,14 +14,14 @@ body {
   --clr-room-button: hsl(0, 0%, 95%);
   --clr-room-button-hover: hsl(215, 80%, 56%);
   --clr-current-room-button: hsl(215, 80%, 56%);
-  
+
   /* chat variables */
   --clr-bg: hsl(0, 0%, 95%);
   --clr-chat-top-row-container: hsl(188, 72%, 61%);
   --clr-sign-out-button: hsl(188, 98%, 40%);
   --clr-msg-bg: hsl(211, 60%, 66%);
   --clr-msg-bg-sent: hsl(188, 72%, 61%);
-  
+
   /* users variables */
   --clr-user-list-title: hsl(188, 98%, 40%);
   --clr-user-list-bg: hsl(0, 0%, 95%);
@@ -47,7 +47,7 @@ body {
 .room-selector-container {
   display: grid;
   grid-template-columns: var(--room-width);
-  grid-template-rows: 5% 89% 6%;
+  grid-template-rows: 30px 530px 40px;
   background-color: var(--clr-room-selector-bg);
 }
 
@@ -55,12 +55,12 @@ body {
   display: flex;
   font-weight: 550;
   background-color: var(--clr-rooms-title);
-  padding: 0px 0px 0px 40%;
+  padding: 0px 0px 0px 120px;
 }
 
 .delete-room-button {
-  height: 100%;
-  width: 85px;
+  height: 30px;
+  width: 100px;
   background-color: var(--clr-deletion-button);
   border: 0;
   padding: 0;
@@ -100,7 +100,7 @@ body {
 
 .add-room-button {
   width: var(--room-width);
-  height: 100%;
+  height: var(--outer-row-height);
   background-color: var(--clr-add-room-button);
   border: 0;
   padding: 0;
@@ -113,7 +113,7 @@ body {
   height: 600px;
   display: grid;
   grid-template-columns: var(--chat-width);
-  grid-template-rows: 5% 89% 6%;
+  grid-template-rows: 30px 530px 40px;
   background-color: var(--clr-bg);
 }
 
@@ -121,7 +121,7 @@ body {
   display: flex;
   background-color: var(--clr-chat-top-row-container);
   font-weight: 550;
-  padding: 0px 0px 0px 30%;
+  padding: 0px 0px 0px 180px;
 }
 
 .sign-out {
@@ -202,12 +202,12 @@ body {
 form {
   display: flex;
   width: var(--chat-width);
-  height: 100%;
+  height: var(--outer-row-height);
 }
 
 .message-input {
   width: calc(var(--chat-width) * 0.85);
-  height: 100%;
+  height: var(--outer-row-height);
   font-size: 1.2rem;
   outline: none;
   border: none;
@@ -216,7 +216,7 @@ form {
 
 .submit-message-button {
   width: calc(var(--chat-width) * 0.15);
-  height: 100%;
+  height: calc(var(--outer-row-height));
   padding: 0;
   border: 0;
 }
@@ -226,7 +226,7 @@ form {
 .user-list-container {
   display: grid;
   grid-template-columns: var(--users-width);
-  grid-template-rows: 5% 81% 14%;
+  grid-template-rows: 30px 490px 80px;
   background-color: var(--clr-user-list-bg);
 }
 
@@ -261,37 +261,30 @@ form {
   height: 40px;
 }
 
-.add-remove-container {
-  height: 100%;
-}
-
 .add-remove-name {
   width: var(--users-width);
-  height: 36%;
+  height: 30px;
   border: none;
   outline: none;
   font-size: 1.1rem;
   padding: 0px 10px 0px 10px;
 }
 
-.add-remove-clear-buttons-container {
-  height: 64%;
+.add-remove-container {
+  height: 80px;
 }
 
-.add-remove-buttons-container {
-  height: 50%;
+.add-remove-buttons-container,
+.clear-button-container {
+  height: 25px;
 }
 
-.add-remove-buttons-container, .clear-button-container {
-  height: 50%;
-}
-
-.add-button, .remove-button {
+.add-button,
+.remove-button {
   width: calc(var(--users-width) / 2);
-  height: 100%;
+  height: 25px;
   padding: 0;
   border: 0;
-  word-wrap: break-word;
 }
 
 .remove-button {
@@ -300,7 +293,7 @@ form {
 
 .clear-button {
   width: var(--users-width);
-  height: 100%;
+  height: 25px;
   padding: 0;
   border: 0;
 }

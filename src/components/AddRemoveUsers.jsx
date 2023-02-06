@@ -52,8 +52,8 @@ function AddRemoveUsers({ room, update, setUpdate, userInput, setUserInput }) {
         placeholder="Enter user id"
         onChange={(e) => setUserInput(e.target.value)}
       />
-      <div className="add-remove-buttons-container">
-        <div>
+      <div className="add-remove-clear-buttons-container">
+        <div className="add-remove-buttons-container">
           <button
             className="add-button"
             onClick={() => addOrRemoveUser(true)}
