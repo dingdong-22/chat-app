@@ -7,6 +7,9 @@ A chat app that supports public and private chat rooms.
 <!-- ![Features](/resource/layout.png) -->
 <img src="./resource/layout.png" width="750" />
 
+## Sign In
+- Currently only supports Google as the sign in provider
+
 ## Rooms Column (Left)
 
 - Displays the list of rooms you have access to
