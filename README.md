@@ -17,7 +17,7 @@ A chat app that supports public and private chat rooms.
 - Click to enter room
 - You can create your own private rooms and only delete rooms you have created (more details in the User Column section)
 
-## Center Column (Center)
+## Chat Column (Center)
 
 - Sign out in the top right
 - Enter your message and submit your message
