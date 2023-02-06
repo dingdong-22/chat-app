@@ -68,7 +68,7 @@ function UserList({ room, isPublic, isAdmin }) {
             userInput={userInput}
             setUserInput={setUserInput}
           />
-        ) : null}
+        ) : <div className="empty-space"></div>}
       </div>
     </div>
   );

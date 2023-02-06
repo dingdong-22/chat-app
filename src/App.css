@@ -1,19 +1,20 @@
 body {
   /* display: grid;
   place-content: center; */
-  /* width: 100vw; */
+  /* width: 100vw; */ 
   background-color: hsl(0, 0%, 87%);
+  padding-top: 2.5vh;
   --room-width: 20vw;
   --chat-width: 50vw;
   --users-width: 20vw;
 
   /* rooms variables */
   --clr-rooms-title: hsl(188, 98%, 40%);
-  --clr-room-selector-bg: hsl(226, 68%, 78%);
+  --clr-room-selector-bg: hsl(225, 60%, 89%);
   --clr-add-room-button: hsl(188, 98%, 40%);
   --clr-room-button: hsl(0, 0%, 95%);
-  --clr-room-button-hover: hsl(215, 80%, 56%);
-  --clr-current-room-button: hsl(215, 80%, 56%);
+  --clr-room-button-hover: hsl(215, 88%, 65%);
+  --clr-current-room-button: hsl(215, 83%, 63%);
   
   /* chat variables */
   --clr-bg: hsl(0, 0%, 95%);
@@ -24,7 +25,7 @@ body {
   
   /* users variables */
   --clr-user-list-title: hsl(188, 98%, 40%);
-  --clr-user-list-bg: hsl(0, 0%, 95%);
+  --clr-user-list-bg: hsl(225, 60%, 89%);
 
   /* other */
   --clr-deletion-button: hsl(0, 71%, 60%);
@@ -128,7 +129,7 @@ body {
   padding: 0;
   border: 0;
   width: 80px;
-  background-color: var(--clr-sign-out-button);
+  background-color: var(--clr-deletion-button);
   margin-left: auto;
 }
 
@@ -322,4 +323,10 @@ form {
 button:hover {
   cursor: pointer;
   filter: brightness(125%);
+}
+
+.empty-space {
+  height: 100%;
+  width: 100%;
+  background-color: hsl(0, 0%, 95%);
 }
