@@ -5,7 +5,7 @@ A chat app that supports public and private chat rooms.
 # Features
 
 <!-- ![Features](/resource/layout.png) -->
-<img src="./resource/layout.png" width="500" />
+<img src="./resource/layout.png" width="750" />
 
 ## Rooms Column (Left)
 
